@@ -211,7 +211,17 @@ export default function ProfileTracker({ profile, onChangeProfile }: ProfileTrac
                   Preciso de tudo
                 </button>
                 <button
-                  onClick={() => onChangeProfile({ reuse: 'Já tenho Mouse/Teclado' })}
+                  onClick={() => {
+                    const current = profile.reuse.toLowerCase();
+                    if (current.includes('nenhum') || current === 'ainda não definido') {
+                      onChangeProfile({ reuse: 'Já tenho Mouse/Teclado' });
+                    } else if (current.includes('mouse')) {
+                      const parts = profile.reuse.split(', ').filter(p => !p.toLowerCase().includes('mouse'));
+                      onChangeProfile({ reuse: parts.length ? parts.join(', ') : 'Ainda Não Definido' });
+                    } else {
+                      onChangeProfile({ reuse: profile.reuse + ', Já tenho Mouse/Teclado' });
+                    }
+                  }}
                   className={`px-2 py-0.5 text-[10px] rounded-md border font-semibold transition-all cursor-pointer focus-visible:ring-2 focus-visible:ring-[#5A6E5F]/50 focus-visible:ring-offset-2 ${
                     profile.reuse.toLowerCase().includes('mouse')
                       ? 'bg-[#5A6E5F] text-white border-transparent'
@@ -222,7 +232,17 @@ export default function ProfileTracker({ profile, onChangeProfile }: ProfileTrac
                   Tenho Mouse/Teclado
                 </button>
                 <button
-                  onClick={() => onChangeProfile({ reuse: 'Já tenho Monitor' })}
+                  onClick={() => {
+                    const current = profile.reuse.toLowerCase();
+                    if (current.includes('nenhum') || current === 'ainda não definido') {
+                      onChangeProfile({ reuse: 'Já tenho Monitor' });
+                    } else if (current.includes('monitor')) {
+                      const parts = profile.reuse.split(', ').filter(p => !p.toLowerCase().includes('monitor'));
+                      onChangeProfile({ reuse: parts.length ? parts.join(', ') : 'Ainda Não Definido' });
+                    } else {
+                      onChangeProfile({ reuse: profile.reuse + ', Já tenho Monitor' });
+                    }
+                  }}
                   className={`px-2 py-0.5 text-[10px] rounded-md border font-semibold transition-all cursor-pointer focus-visible:ring-2 focus-visible:ring-[#5A6E5F]/50 focus-visible:ring-offset-2 ${
                     profile.reuse.toLowerCase().includes('monitor')
                       ? 'bg-[#5A6E5F] text-white border-transparent'

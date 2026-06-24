@@ -113,14 +113,22 @@ export default function App() {
     setLoading(true);
 
     try {
-      // Send message history to our backend
+      // Build profile context to send along
+      const profileContext = `[PERFIL_ATUAL: Mobilidade=${profile.mobility}, Uso=${profile.effort}, Orçamento=${profile.budget}, Reaproveitamento=${profile.reuse}]`;
+
+      // Prepend profile context to messages so the AI knows current selections
+      const messagesWithProfile = [
+        { role: 'user' as const, text: profileContext },
+        ...updatedMessages.map(m => ({ role: m.role, text: m.text })),
+      ];
+
       const response = await fetch('/api/chat', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          messages: updatedMessages.map(m => ({ role: m.role, text: m.text })),
+          messages: messagesWithProfile,
         }),
       });
 
@@ -170,33 +178,10 @@ export default function App() {
       ...updatedFields,
     }));
 
-    if (isReset) {
-      const resetNotice: Message = {
-        id: crypto.randomUUID(),
-        role: 'user',
-        text: '[Perfil reiniciado: todos os campos redefinidos para "Ainda Não Definido"]',
-        timestamp: new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }),
-      };
-      setMessages((prev) => [...prev, resetNotice]);
-      return;
-    }
-
-    // Generate individual update messages
-    const parts: string[] = [];
-    if (updatedFields.mobility) parts.push(`[Preferência de Mobilidade alterada para: ${updatedFields.mobility}]`);
-    if (updatedFields.effort) parts.push(`[Preferência de Uso alterada para: ${updatedFields.effort}]`);
-    if (updatedFields.budget) parts.push(`[Orçamento definido para: ${updatedFields.budget}]`);
-    if (updatedFields.reuse) parts.push(`[Reaproveitamento definido para: ${updatedFields.reuse}]`);
-
-    if (parts.length > 0) {
-      const systemNotice: Message = {
-        id: crypto.randomUUID(),
-        role: 'user',
-        text: parts.join(' '),
-        timestamp: new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }),
-      };
-      setMessages((prev) => [...prev, systemNotice]);
-    }
+    // No longer inject messages into chat on profile changes.
+    // The profile state is sent as context when the user explicitly
+    // submits a message via the chat input.
+    if (isReset) return;
   };
 
   // Get the last assistant message text to check for recommendations
