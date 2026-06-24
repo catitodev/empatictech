@@ -3,7 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "description": "Guia Tech Empático — assistente conversacional que ajuda pessoas leigas a escolherem o computador ideal",
+  "description": "Desanuveador Tech Empático — assistente conversacional que ajuda pessoas leigas a escolherem o computador ideal",
   "license": "Apache-2.0",
   "scripts": {
     "dev": "tsx server.ts",

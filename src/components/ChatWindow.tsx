@@ -2,6 +2,8 @@ import { useState, useRef, useEffect, FormEvent } from 'react';
 import { Send, AlertCircle } from 'lucide-react';
 import { Message } from '../types';
 import { CopyMessageButton } from './ExportActions';
+// @ts-ignore
+import logoIcon from '../assets/images/empatictech_icon.png';
 
 interface ChatWindowProps {
   messages: Message[];
@@ -41,9 +43,7 @@ export default function ChatWindow({ messages, onSendMessage, loading, error }: 
       {/* Chat Header */}
       <div className="bg-[#F4F1EA] border-b border-[#E5E1D5] p-4.5 flex items-center justify-between text-[#4A4842] shadow-xs">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 bg-[#5A6E5F] rounded-full flex items-center justify-center text-xl shadow-xs text-white">
-            🧑‍💻
-          </div>
+          <img src={logoIcon} alt="Guia Tech" className="w-10 h-10 rounded-full object-cover shadow-xs" />
           <div>
             <h2 className="text-sm font-serif italic font-bold text-[#4A4842] tracking-tight">Conversa com o Guia Tech</h2>
             <div className="flex items-center gap-1.5 mt-0.5">
@@ -58,9 +58,7 @@ export default function ChatWindow({ messages, onSendMessage, loading, error }: 
       <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-[#FDFCF8]">
         {messages.length === 0 && (
           <div className="flex flex-col items-center justify-center h-full text-center p-6 space-y-4">
-            <div className="w-16 h-16 bg-[#5A6E5F]/10 rounded-full flex items-center justify-center text-2xl animate-bounce">
-              👋
-            </div>
+            <img src={logoIcon} alt="Guia Tech" className="w-16 h-16 rounded-full object-cover animate-bounce shadow-md" />
             <div className="space-y-1.5 max-w-sm">
               <h3 className="text-sm font-serif italic font-bold text-[#4A4842]">Seja muito bem-vindo(a)!</h3>
               <p className="text-xs text-[#3D3B36] leading-relaxed">
@@ -95,11 +93,13 @@ export default function ChatWindow({ messages, onSendMessage, loading, error }: 
               className={`flex gap-3 max-w-[85%] group ${isAssistant ? 'mr-auto' : 'ml-auto flex-row-reverse'}`}
               id={`message-bubble-${msg.id}`}
             >
-              <div className={`w-8 h-8 rounded-full shrink-0 flex items-center justify-center text-sm shadow-xs ${
-                isAssistant ? 'bg-[#5A6E5F] text-white' : 'bg-[#8D7B68] text-white'
-              }`}>
-                {isAssistant ? '🧑‍💻' : '👤'}
-              </div>
+              {isAssistant ? (
+                <img src={logoIcon} alt="Guia" className="w-8 h-8 rounded-full object-cover shadow-xs" />
+              ) : (
+                <div className="w-8 h-8 rounded-full shrink-0 flex items-center justify-center text-sm shadow-xs bg-[#8D7B68] text-white">
+                  👤
+                </div>
+              )}
 
               <div className="space-y-1">
                 <div className={`p-3.5 rounded-2xl text-xs leading-relaxed relative ${
@@ -122,9 +122,7 @@ export default function ChatWindow({ messages, onSendMessage, loading, error }: 
 
         {loading && (
           <div className="flex gap-3 max-w-[85%] mr-auto" id="loading-indicator">
-            <div className="w-8 h-8 rounded-full shrink-0 bg-[#5A6E5F] text-white flex items-center justify-center text-sm">
-              🧑‍💻
-            </div>
+            <img src={logoIcon} alt="Guia" className="w-8 h-8 rounded-full object-cover shadow-xs shrink-0" />
             <div className="bg-white border border-[#E5E1D5] p-3.5 rounded-2xl rounded-tl-none shadow-xs">
               <div className="flex gap-1.5 items-center justify-center h-4 py-1">
                 <span className="w-2 h-2 bg-[#5A6E5F] rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />

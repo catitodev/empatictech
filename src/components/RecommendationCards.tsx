@@ -96,7 +96,7 @@ export default function RecommendationCards({ chatText }: RecommendationCardsPro
           Buscando as Recomendações Perfeitas
         </h4>
         <p className="text-xs text-[#8D7B68] dark:text-[#aaa] max-w-sm mx-auto leading-relaxed">
-          Converse mais um pouco com o Guia Tech Empático no chat! Assim que ele entender sua necessidade, o painel interativo de orçamentos e lojas abrirá aqui automaticamente.
+          Converse mais um pouco com o Desanuveador Tech Empático no chat! Assim que ele entender sua necessidade, o painel interativo de orçamentos e lojas abrirá aqui automaticamente.
         </p>
       </div>
     );

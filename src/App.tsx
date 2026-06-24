@@ -152,7 +152,7 @@ export default function App() {
 
       setMessages((prev) => [...prev, assistantMessage]);
     } catch (err: any) {
-      setError(err.message || "Não foi possível se conectar ao Guia Tech Empático. Verifique as configurações.");
+      setError(err.message || "Não foi possível se conectar ao Desanuveador Tech Empático. Verifique as configurações.");
     } finally {
       setLoading(false);
     }
@@ -213,11 +213,11 @@ export default function App() {
             <img 
               src={logoEmpatictech} 
               alt="EmpaticTech Logo" 
-              className="w-14 h-14 object-contain rounded-xl"
+              className="w-16 h-16 object-contain rounded-xl"
               referrerPolicy="no-referrer"
             />
             <h1 className="text-xl font-serif italic font-bold text-natural-charcoal dark:text-[#e0ddd6] tracking-tight">
-              Guia Tech Empático
+              Desanuveador Tech Empático
             </h1>
           </div>
 
@@ -273,7 +273,7 @@ export default function App() {
             🌿 recurso abundante feito com empatia e afeto 🌿
           </p>
           <div className="flex items-center justify-center gap-1">
-            <span>Guia Tech Empático © 2025</span>
+            <span>Desanuveador Tech Empático © 2025</span>
             <span>•</span>
             <span className="text-natural-sage font-bold font-serif italic">Sem complicações. Sem jargões.</span>
           </div>

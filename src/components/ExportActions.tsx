@@ -22,35 +22,35 @@ export default function ExportActions({ messages }: ExportActionsProps) {
   const getConversationText = (): string => {
     return messages
       .filter(m => !m.text.startsWith('['))
-      .map(m => `${m.role === 'user' ? '👤 Você' : '🧑‍💻 Guia Tech'} (${m.timestamp}):\n${m.text}`)
+      .map(m => `${m.role === 'user' ? '👤 Você' : '🧑‍💻 Desanuveador Tech'} (${m.timestamp}):\n${m.text}`)
       .join('\n\n---\n\n');
   };
 
   const getMarkdown = (): string => {
-    let md = '# Conversa com o Guia Tech Empático\n\n';
+    let md = '# Conversa com o Desanuveador Tech Empático\n\n';
     md += `> Exportado em ${new Date().toLocaleDateString('pt-BR')} às ${new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })}\n\n`;
     md += '---\n\n';
 
     messages
       .filter(m => !m.text.startsWith('['))
       .forEach(m => {
-        const role = m.role === 'user' ? '**👤 Você**' : '**🧑‍💻 Guia Tech**';
+        const role = m.role === 'user' ? '**👤 Você**' : '**🧑‍💻 Desanuveador Tech**';
         md += `### ${role} — ${m.timestamp}\n\n${m.text}\n\n---\n\n`;
       });
 
-    md += '\n*Gerado pelo Guia Tech Empático — recurso abundante feito com empatia e afeto*\n';
+    md += '\n*Gerado pelo Desanuveador Tech Empático — recurso abundante feito com empatia e afeto*\n';
     return md;
   };
 
   const exportAsTxt = () => {
-    const text = `CONVERSA COM O GUIA TECH EMPÁTICO\nExportado em: ${new Date().toLocaleDateString('pt-BR')}\n${'='.repeat(50)}\n\n${getConversationText()}\n\n${'='.repeat(50)}\nGerado pelo Guia Tech Empático — recurso abundante feito com empatia e afeto`;
+    const text = `CONVERSA COM O DESANUVEADOR TECH EMPÁTICO\nExportado em: ${new Date().toLocaleDateString('pt-BR')}\n${'='.repeat(50)}\n\n${getConversationText()}\n\n${'='.repeat(50)}\nGerado pelo Desanuveador Tech Empático — recurso abundante feito com empatia e afeto`;
     const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
-    saveAs(blob, `guia-tech-conversa-${Date.now()}.txt`);
+    saveAs(blob, `desanuveador-tech-conversa-${Date.now()}.txt`);
   };
 
   const exportAsMd = () => {
     const blob = new Blob([getMarkdown()], { type: 'text/markdown;charset=utf-8' });
-    saveAs(blob, `guia-tech-conversa-${Date.now()}.md`);
+    saveAs(blob, `desanuveador-tech-conversa-${Date.now()}.md`);
   };
 
   const exportAsPdf = () => {
@@ -62,7 +62,7 @@ export default function ExportActions({ messages }: ExportActionsProps) {
 
     doc.setFont('helvetica', 'bold');
     doc.setFontSize(16);
-    doc.text('Guia Tech Empático', margin, y);
+    doc.text('Desanuveador Tech Empático', margin, y);
     y += 8;
 
     doc.setFont('helvetica', 'normal');
@@ -80,7 +80,7 @@ export default function ExportActions({ messages }: ExportActionsProps) {
 
         doc.setFont('helvetica', 'bold');
         doc.setFontSize(10);
-        const role = m.role === 'user' ? 'Você' : 'Guia Tech';
+        const role = m.role === 'user' ? 'Você' : 'Desanuveador Tech';
         doc.text(`${role} (${m.timestamp}):`, margin, y);
         y += 6;
 
@@ -99,14 +99,14 @@ export default function ExportActions({ messages }: ExportActionsProps) {
       });
 
     doc.setFontSize(8);
-    doc.text('Gerado pelo Guia Tech Empatico', margin, 285);
-    doc.save(`guia-tech-conversa-${Date.now()}.pdf`);
+    doc.text('Gerado pelo Desanuveador Tech Empatico', margin, 285);
+    doc.save(`desanuveador-tech-conversa-${Date.now()}.pdf`);
   };
 
   const exportAsDocx = async () => {
     const children: Paragraph[] = [
       new Paragraph({
-        text: 'Conversa com o Guia Tech Empático',
+        text: 'Conversa com o Desanuveador Tech Empático',
         heading: HeadingLevel.HEADING_1,
       }),
       new Paragraph({
@@ -120,7 +120,7 @@ export default function ExportActions({ messages }: ExportActionsProps) {
     messages
       .filter(m => !m.text.startsWith('['))
       .forEach(m => {
-        const role = m.role === 'user' ? 'Você' : 'Guia Tech';
+        const role = m.role === 'user' ? 'Você' : 'Desanuveador Tech';
         children.push(
           new Paragraph({
             children: [
@@ -137,14 +137,14 @@ export default function ExportActions({ messages }: ExportActionsProps) {
     children.push(
       new Paragraph({
         children: [
-          new TextRun({ text: 'Gerado pelo Guia Tech Empático — recurso abundante feito com empatia e afeto', italics: true, size: 18 }),
+          new TextRun({ text: 'Gerado pelo Desanuveador Tech Empático — recurso abundante feito com empatia e afeto', italics: true, size: 18 }),
         ],
       }),
     );
 
     const doc = new Document({ sections: [{ children }] });
     const blob = await Packer.toBlob(doc);
-    saveAs(blob, `guia-tech-conversa-${Date.now()}.docx`);
+    saveAs(blob, `desanuveador-tech-conversa-${Date.now()}.docx`);
   };
 
   const handleExport = async (format: ExportFormat) => {

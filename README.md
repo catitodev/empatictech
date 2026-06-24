@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="src/assets/images/empatictech_icon.png" alt="Guia Tech Empático" width="120" />
+<img src="src/assets/images/empatictech_icon.png" alt="Desanuveador Tech Empático" width="120" />
 
 # Desanuveador Tech Empático
 
@@ -118,7 +118,25 @@ Base de conhecimento integrada sobre **hardware livre, software livre, maker/DIY
 
 ---
 
-## 🚀 Como Rodar
+## 🚀 Acesse Agora
+
+<div align="center">
+
+### 🌐 Use no navegador (webapp)
+Acesse diretamente pelo link — sem instalar nada:
+
+👉 **[empatictech.vercel.app](https://empatictech.vercel.app)** 👈
+
+Funciona no celular, tablet e computador.
+
+</div>
+
+---
+
+## 🛠️ Para Desenvolvedores
+
+<details>
+<summary><strong>📋 Como rodar localmente</strong></summary>
 
 ### Pré-requisitos
 
@@ -128,32 +146,22 @@ Base de conhecimento integrada sobre **hardware livre, software livre, maker/DIY
 ### Instalação
 
 ```bash
-# Clone o repositório
 git clone https://github.com/catitodev/empatictech.git
 cd empatictech
-
-# Instale dependências
 npm install
-
-# Configure a chave de API
 cp .env.example .env
-# Edite o arquivo .env e cole sua GROQ_API_KEY
+# Edite o .env e cole sua GROQ_API_KEY
 ```
 
 ### Execução
 
 ```bash
-# Desenvolvimento (com hot-reload)
-npm run dev
-
-# Build de produção
-npm run build
-
-# Servir produção localmente
-npm start
+npm run dev        # http://localhost:3000
+npm run build      # Build de produção
+npm start          # Servir produção
 ```
 
-Acesse **http://localhost:3000** no navegador.
+</details>
 
 ---
 

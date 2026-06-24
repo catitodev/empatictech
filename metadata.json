@@ -1,6 +1,0 @@
-{
-  "name": "Guia Tech Empático",
-  "description": "Um consultor de hardware humano, paciente e acolhedor, focado em ajudar pessoas leigas a encontrarem o computador perfeito para suas vidas, sem jargões confusos.",
-  "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
-}
