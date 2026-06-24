@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Heart } from 'lucide-react';
+import { Heart, Download } from 'lucide-react';
 import { Message, UserProfile } from './types';
 // @ts-ignore
 import logoEmpatictech from './assets/images/empatictech_icon.png';
@@ -13,6 +13,16 @@ import AskAnything from './components/AskAnything';
 
 export default function App() {
   const [messages, setMessages] = useState<Message[]>([]);
+  const [installPrompt, setInstallPrompt] = useState<any>(null);
+
+  useEffect(() => {
+    const handler = (e: Event) => {
+      e.preventDefault();
+      setInstallPrompt(e);
+    };
+    window.addEventListener('beforeinstallprompt', handler);
+    return () => window.removeEventListener('beforeinstallprompt', handler);
+  }, []);
   const [profile, setProfile] = useState<UserProfile>({
     mobility: 'Ainda Não Definido',
     effort: 'Ainda Não Definido',
@@ -213,6 +223,20 @@ export default function App() {
 
           <div className="flex items-center gap-2 sm:gap-3 shrink-0">
             <ThemeToggle dark={darkMode} onToggle={() => setDarkMode(!darkMode)} />
+            {installPrompt && (
+              <button
+                onClick={async () => {
+                  installPrompt.prompt();
+                  const result = await installPrompt.userChoice;
+                  if (result.outcome === 'accepted') setInstallPrompt(null);
+                }}
+                className="flex items-center gap-1 px-2.5 py-1.5 text-[11px] font-semibold text-natural-sage bg-natural-sage/10 border border-natural-sage/20 rounded-lg hover:bg-natural-sage/20 transition-colors cursor-pointer"
+                title="Instalar como aplicativo"
+              >
+                <Download className="w-3.5 h-3.5" />
+                <span className="hidden sm:inline">Instalar</span>
+              </button>
+            )}
             <ExportActions messages={messages} />
             <div className="hidden lg:flex items-center gap-2 bg-natural-sage/10 border border-natural-sage/20 py-1.5 px-3 rounded-xl text-xs text-natural-sage font-medium">
               <Heart className="w-4 h-4 text-natural-sage animate-pulse motion-reduce:animate-none fill-natural-sage/20" />

@@ -138,12 +138,12 @@ Base de conhecimento integrada sobre **hardware livre, software livre, maker/DIY
 
 <div align="center">
 
-### 🌐 Use no navegador (webapp)
-Acesse diretamente pelo link — sem instalar nada:
+**Acesse pelo navegador ou instale como aplicativo:**
 
 👉 **[empatictech.vercel.app](https://empatictech.vercel.app)** 👈
 
-Funciona no celular, tablet e computador.
+Funciona em qualquer navegador — celular, tablet e computador.
+No Android, toque em "Instalar" no header para adicionar à tela inicial como app nativo.
 
 </div>
 
