@@ -47,12 +47,13 @@ Conversa natural com assistente que explica hardware usando **metáforas do coti
 </td>
 <td width="50%">
 
-### 📊 Perfil Adaptativo
-Painel inteligente que **detecta automaticamente** suas necessidades a partir da conversa:
-- 📱 Mobilidade (Notebook / Desktop)
-- ⚡ Nível de uso (Básico / Intermediário / Avançado)
-- 💰 Orçamento
-- ♻️ Reaproveitamento de periféricos
+### 📊 Perfil Interativo
+Painel com **multi-seleção** que permite configurar suas necessidades antes de gerar a resposta:
+- 📱 Mobilidade (Notebook / Desktop / Ambos)
+- ⚡ Nível de uso (Básico / Intermediário / Avançado — multi-select)
+- 💰 Orçamento (campo livre)
+- ♻️ Reaproveitamento de periféricos (multi-select)
+- 🚀 Botão "Gerar" envia o perfil e pede recomendações à IA
 
 </td>
 </tr>
@@ -113,8 +114,23 @@ Base de conhecimento integrada sobre **hardware livre, software livre, maker/DIY
 | 🌾 Secundária (Ochre) | ![#D4A373](https://via.placeholder.com/15/D4A373/D4A373.png) | `#D4A373` |
 | 🤍 Fundo (Off-white) | ![#FDFCF8](https://via.placeholder.com/15/FDFCF8/FDFCF8.png) | `#FDFCF8` |
 | 📜 Sidebar (Bege) | ![#F4F1EA](https://via.placeholder.com/15/F4F1EA/F4F1EA.png) | `#F4F1EA` |
+| 🖤 Dark Base | ![#1a1a1a](https://via.placeholder.com/15/1a1a1a/1a1a1a.png) | `#1a1a1a` |
 
 </div>
+
+**Design System:** Efeito glassmorphism sutil (`backdrop-blur-md` + opacidade) aplicado em todos os containers. Dark mode completo via tokens CSS customizados. Tipografia dual: Playfair Display (voz empática) + Inter (clareza funcional).
+
+---
+
+## 🛡️ Segurança
+
+- ✅ Content Security Policy (CSP) restrito
+- ✅ Rate limiting: 20 req/min por IP
+- ✅ Prompt injection detection
+- ✅ Input sanitization (control chars stripped)
+- ✅ Security headers completos (HSTS, nosniff, X-Frame-Options, Permissions-Policy)
+- ✅ 0 vulnerabilidades (`npm audit`)
+- ✅ Sem `eval()`, `innerHTML` ou vetores XSS
 
 ---
 
@@ -215,9 +231,12 @@ empatictech/
 ## 🔒 Segurança
 
 - ✅ **0 vulnerabilidades** (`npm audit` limpo)
+- ✅ Content Security Policy (CSP) restrito
 - ✅ Rate limiting: 20 req/min por IP
+- ✅ Prompt injection detection em ambos endpoints
 - ✅ Payload limitado a 100KB, mensagens a 2000 chars
-- ✅ Security headers: X-Frame-Options, HSTS, nosniff, Referrer-Policy
+- ✅ Security headers: HSTS, X-Frame-Options DENY, nosniff, Referrer-Policy, Permissions-Policy
+- ✅ Input sanitization (control chars stripped)
 - ✅ Chaves via variáveis de ambiente (nunca no código)
 - ✅ `.env` no `.gitignore`, sem secrets versionados
 - ✅ Sem `eval()`, `innerHTML` ou vetores de XSS
@@ -249,10 +268,11 @@ empatictech/
 
 ## 📱 Responsividade
 
-A aplicação é totalmente responsiva com layout adaptativo:
-- **Desktop**: Layout em 2 colunas (sidebar + chat)
+A aplicação é totalmente responsiva com layout adaptativo e efeito glass:
+- **Desktop**: Layout em 2 colunas (sidebar + chat) com containers glass
 - **Tablet**: Colunas empilhadas com espaçamento ajustado
-- **Mobile**: Layout vertical com componentes otimizados para toque
+- **Mobile**: Header compacto, layout vertical, componentes otimizados para toque com targets mínimos de 44px
+- **PWA**: Instalável como app nativo via manifest + Service Worker
 
 ---
 
