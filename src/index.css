@@ -10,10 +10,31 @@
   --color-natural-border: #E5E1D5;
   --color-natural-sage: #5A6E5F;
   --color-natural-ochre: #D4A373;
-  --color-natural-taupe: #8D7B68;
+  --color-natural-taupe: #6B5E4F;
   --color-natural-charcoal: #4A4842;
+
+  --color-dark-base: #1a1a1a;
+  --color-dark-surface: #1e1e1e;
+  --color-dark-elevated: #252525;
+  --color-dark-hover: #333333;
+  --color-dark-input: #2a2a2a;
+  --color-dark-border: #444444;
+  --color-dark-muted: #999999;
+  --color-dark-text: #e0ddd6;
 
   --font-serif: "Playfair Display", "Georgia", "ui-serif", serif;
   --font-sans: "Inter", "system-ui", "-apple-system", sans-serif;
+}
+
+@keyframes typing-pulse {
+  0%, 100% { opacity: 0.3; transform: scale(0.85); }
+  50% { opacity: 1; transform: scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-pulse,
+  .animate-\[typing-pulse_1\.4s_ease-in-out_infinite\] {
+    animation: none !important;
+  }
 }
 

@@ -205,9 +205,9 @@ export default function App() {
     .find((m) => m.role === 'assistant')?.text || '';
 
   return (
-    <div className="min-h-screen bg-natural-bg dark:bg-[#1a1a1a] text-natural-dark dark:text-[#e0ddd6] flex flex-col font-sans antialiased selection:bg-natural-sage/20" id="app-root">
+    <div className="min-h-screen bg-natural-bg dark:bg-dark-base text-natural-dark dark:text-dark-text flex flex-col font-sans antialiased selection:bg-natural-sage/20" id="app-root">
       {/* Header */}
-      <header className="bg-natural-sidebar dark:bg-[#222] border-b border-natural-border dark:border-[#444] py-4.5 px-6 sticky top-0 z-10 shadow-xs" id="app-header">
+      <header className="bg-natural-sidebar dark:bg-dark-elevated border-b border-natural-border dark:border-dark-border py-4.5 px-6 sticky top-0 z-10 shadow-xs" id="app-header">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-3">
             <img 
@@ -217,10 +217,10 @@ export default function App() {
               referrerPolicy="no-referrer"
             />
             <div>
-              <h1 className="text-xl font-serif italic font-bold text-natural-charcoal dark:text-[#e0ddd6] tracking-tight">
+              <h1 className="text-xl font-serif italic font-bold text-natural-charcoal dark:text-dark-text tracking-tight">
                 Desanuveador Tech Empático
               </h1>
-              <p className="text-[10px] text-natural-taupe dark:text-[#999] mt-0.5 max-w-xs leading-relaxed hidden sm:block">
+              <p className="text-[10px] text-natural-taupe dark:text-dark-muted mt-0.5 max-w-xs leading-relaxed hidden sm:block">
                 Um assistente conversacional empático que ajuda pessoas a escolherem o computador ideal, linguagem simplificada com metáforas do dia a dia.
               </p>
             </div>
@@ -230,7 +230,7 @@ export default function App() {
             <ThemeToggle dark={darkMode} onToggle={() => setDarkMode(!darkMode)} />
             <ExportActions messages={messages} />
             <div className="hidden sm:flex items-center gap-2 bg-natural-sage/10 border border-natural-sage/20 py-1.5 px-3 rounded-xl text-xs text-natural-sage font-medium">
-              <Heart className="w-4 h-4 text-natural-sage animate-pulse fill-natural-sage/20" />
+              <Heart className="w-4 h-4 text-natural-sage animate-pulse motion-reduce:animate-none fill-natural-sage/20" />
               <span>Apoio empático</span>
             </div>
           </div>
@@ -272,8 +272,8 @@ export default function App() {
       </main>
 
       {/* Aesthetic Footer */}
-      <footer className="bg-natural-sidebar dark:bg-[#222] border-t border-natural-border dark:border-[#444] py-6 text-center mt-12" id="app-footer">
-        <div className="max-w-7xl mx-auto px-4 text-xs text-natural-taupe dark:text-[#999] space-y-2">
+      <footer className="bg-natural-sidebar dark:bg-dark-elevated border-t border-natural-border dark:border-dark-border py-6 text-center mt-12" id="app-footer">
+        <div className="max-w-7xl mx-auto px-4 text-xs text-natural-taupe dark:text-dark-muted space-y-2">
           <p className="font-medium">
             🌿 recurso abundante feito com empatia e afeto 🌿
           </p>

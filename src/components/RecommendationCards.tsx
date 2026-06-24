@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Sparkles, Percent, CheckCircle2, Search, ExternalLink, ShieldCheck, RefreshCw, ArrowUpDown, Tag } from 'lucide-react';
+import { Sparkles, Percent, CheckCircle2, Search, ExternalLink, ShieldCheck, ArrowUpDown, Tag } from 'lucide-react';
 import { RecommendationOption } from '../types';
 
 interface RecommendationCardsProps {
@@ -90,7 +90,7 @@ export default function RecommendationCards({ chatText }: RecommendationCardsPro
     return (
       <div className="bg-[#F4F1EA]/60 dark:bg-[#2a2a2a] border border-[#E5E1D5] dark:border-[#444] rounded-3xl p-6 text-center" id="no-recommendation-cards">
         <div className="w-12 h-12 bg-[#5A6E5F]/10 rounded-full flex items-center justify-center mx-auto mb-3">
-          <Sparkles className="w-6 h-6 text-[#5A6E5F] animate-pulse" />
+          <Sparkles className="w-6 h-6 text-[#5A6E5F] animate-pulse motion-reduce:animate-none" />
         </div>
         <h4 className="text-sm font-serif italic font-bold text-[#4A4842] dark:text-[#e0ddd6] mb-1">
           Buscando as Recomendações Perfeitas
@@ -281,10 +281,25 @@ export default function RecommendationCards({ chatText }: RecommendationCardsPro
           )}
 
           {searchingPrice && (
-            <div className="flex flex-col items-center justify-center p-4 bg-white dark:bg-[#2a2a2a] border border-[#E5E1D5] dark:border-[#444] rounded-xl space-y-2 animate-pulse">
-              <RefreshCw className="w-6 h-6 text-[#5A6E5F] animate-spin" />
-              <span className="text-xs font-semibold text-[#4A4842] dark:text-[#e0ddd6]">Consultando preços estimados...</span>
-              <span className="text-[10px] text-[#8D7B68] dark:text-[#999]">KaBuM! • Amazon • Mercado Livre • Magalu • Shopee</span>
+            <div className="space-y-3" aria-busy="true" aria-label="Carregando preços">
+              {[1, 2, 3, 4, 5].map((i) => (
+                <div key={i} className="flex items-center justify-between p-2.5 rounded-xl border border-natural-border dark:border-dark-border">
+                  <div className="flex items-center gap-2">
+                    <div className="w-8 h-8 rounded-lg bg-natural-border dark:bg-dark-border animate-pulse motion-reduce:animate-none" />
+                    <div className="space-y-1.5">
+                      <div className="w-20 h-3 bg-natural-border dark:bg-dark-border rounded animate-pulse motion-reduce:animate-none" />
+                      <div className="w-28 h-2 bg-natural-border/60 dark:bg-dark-border/60 rounded animate-pulse motion-reduce:animate-none" />
+                    </div>
+                  </div>
+                  <div className="space-y-1.5 text-right">
+                    <div className="w-24 h-4 bg-natural-sage/20 rounded animate-pulse motion-reduce:animate-none ml-auto" />
+                    <div className="w-16 h-2 bg-natural-border/60 dark:bg-dark-border/60 rounded animate-pulse motion-reduce:animate-none ml-auto" />
+                  </div>
+                </div>
+              ))}
+              <p className="text-[10px] text-natural-taupe dark:text-dark-muted text-center font-medium">
+                Consultando KaBuM! • Amazon • Mercado Livre • Magalu • Shopee
+              </p>
             </div>
           )}
 

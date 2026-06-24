@@ -23,6 +23,7 @@ Entre em contato pelo email ou abra um Security Advisory privado no GitHub:
 - ✅ `Referrer-Policy: strict-origin-when-cross-origin`
 - ✅ `Permissions-Policy: camera=(), microphone=(), geolocation=()`
 - ✅ `Strict-Transport-Security` (produção)
+- ✅ `Content-Security-Policy` (restrito: self + fonts.googleapis + api.groq.com)
 
 ### Proteção de Dados
 - ✅ Chaves de API exclusivamente via variáveis de ambiente

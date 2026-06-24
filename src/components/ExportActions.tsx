@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Download, Copy, Check, FileText, File, FileCode } from 'lucide-react';
 import { saveAs } from 'file-saver';
 import { Document, Packer, Paragraph, TextRun, HeadingLevel } from 'docx';
@@ -14,8 +14,27 @@ type ExportFormat = 'pdf' | 'txt' | 'md' | 'docx';
 export default function ExportActions({ messages }: ExportActionsProps) {
   const [showMenu, setShowMenu] = useState(false);
   const [exporting, setExporting] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
 
   const assistantMessages = messages.filter(m => m.role === 'assistant');
+
+  useEffect(() => {
+    if (!showMenu) return;
+    const handleClickOutside = (e: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
+        setShowMenu(false);
+      }
+    };
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setShowMenu(false);
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('keydown', handleEscape);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('keydown', handleEscape);
+    };
+  }, [showMenu]);
 
   if (assistantMessages.length === 0) return null;
 
@@ -170,11 +189,13 @@ export default function ExportActions({ messages }: ExportActionsProps) {
   ];
 
   return (
-    <div className="relative">
+    <div className="relative" ref={menuRef}>
       <button
         onClick={() => setShowMenu(!showMenu)}
         disabled={exporting}
-        className="flex items-center gap-1.5 px-3 py-1.5 text-[11px] font-semibold text-[#5A6E5F] bg-[#5A6E5F]/10 border border-[#5A6E5F]/20 rounded-lg hover:bg-[#5A6E5F]/20 transition-colors cursor-pointer disabled:opacity-50"
+        aria-expanded={showMenu}
+        aria-haspopup="true"
+        className="flex items-center gap-1.5 px-3 py-1.5 text-[11px] font-semibold text-natural-sage bg-natural-sage/10 border border-natural-sage/20 rounded-lg hover:bg-natural-sage/20 transition-colors cursor-pointer disabled:opacity-50 focus-visible:ring-2 focus-visible:ring-natural-sage/50 focus-visible:ring-offset-2"
         title="Exportar conversa"
       >
         <Download className="w-3.5 h-3.5" />
@@ -182,14 +203,18 @@ export default function ExportActions({ messages }: ExportActionsProps) {
       </button>
 
       {showMenu && (
-        <div className="absolute right-0 top-full mt-1.5 bg-white border border-[#E5E1D5] rounded-xl shadow-lg py-1.5 z-50 min-w-[160px] animate-fade-in">
+        <div
+          role="menu"
+          className="absolute right-0 top-full mt-1.5 bg-white dark:bg-dark-elevated border border-natural-border dark:border-dark-border rounded-xl shadow-lg py-1.5 z-50 min-w-[160px]"
+        >
           {formats.map(({ key, label, icon: Icon }) => (
             <button
               key={key}
+              role="menuitem"
               onClick={() => handleExport(key)}
-              className="w-full text-left px-3.5 py-2 text-xs text-[#3D3B36] hover:bg-[#F4F1EA] flex items-center gap-2 transition-colors cursor-pointer"
+              className="w-full text-left px-3.5 py-2 text-xs text-natural-dark dark:text-dark-text hover:bg-natural-sidebar dark:hover:bg-dark-hover flex items-center gap-2 transition-colors cursor-pointer focus-visible:bg-natural-sidebar dark:focus-visible:bg-dark-hover outline-none"
             >
-              <Icon className="w-3.5 h-3.5 text-[#5A6E5F]" />
+              <Icon className="w-3.5 h-3.5 text-natural-sage" />
               {label}
             </button>
           ))}
@@ -199,7 +224,6 @@ export default function ExportActions({ messages }: ExportActionsProps) {
   );
 }
 
-// Standalone copy button for individual messages
 export function CopyMessageButton({ text }: { text: string }) {
   const [copied, setCopied] = useState(false);
 
@@ -209,7 +233,6 @@ export function CopyMessageButton({ text }: { text: string }) {
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch {
-      // Fallback
       const textarea = document.createElement('textarea');
       textarea.value = text;
       document.body.appendChild(textarea);
@@ -224,13 +247,14 @@ export function CopyMessageButton({ text }: { text: string }) {
   return (
     <button
       onClick={handleCopy}
-      className="opacity-0 group-hover:opacity-100 transition-opacity p-1 rounded hover:bg-[#E5E1D5]/60 cursor-pointer"
+      className="opacity-0 group-hover:opacity-100 transition-opacity p-1 rounded hover:bg-natural-border/60 dark:hover:bg-dark-border/60 cursor-pointer"
       title="Copiar mensagem"
+      aria-label={copied ? 'Copiado' : 'Copiar mensagem'}
     >
       {copied ? (
-        <Check className="w-3 h-3 text-[#5A6E5F]" />
+        <Check className="w-3 h-3 text-natural-sage" />
       ) : (
-        <Copy className="w-3 h-3 text-[#8D7B68]" />
+        <Copy className="w-3 h-3 text-natural-taupe" />
       )}
     </button>
   );
