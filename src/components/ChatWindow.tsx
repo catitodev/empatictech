@@ -39,7 +39,7 @@ export default function ChatWindow({ messages, onSendMessage, loading, error }: 
   };
 
   return (
-    <div className="flex flex-col h-[580px] bg-white/80 dark:bg-dark-surface/80 backdrop-blur-sm border border-natural-border dark:border-dark-border rounded-3xl shadow-sm overflow-hidden" id="chat-window-container">
+    <div className="flex flex-col h-[580px] bg-white/60 dark:bg-dark-surface/60 backdrop-blur-md border border-natural-border/50 dark:border-dark-border/50 rounded-3xl shadow-sm overflow-hidden" id="chat-window-container">
       {/* Chat Header */}
       <div className="bg-natural-sidebar dark:bg-dark-elevated border-b border-natural-border dark:border-dark-border p-4.5 flex items-center justify-between text-natural-charcoal dark:text-dark-text shadow-xs">
         <div className="flex items-center gap-3">

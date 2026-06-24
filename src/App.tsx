@@ -192,29 +192,29 @@ export default function App() {
   return (
     <div className="min-h-screen bg-natural-bg dark:bg-dark-base text-natural-dark dark:text-dark-text flex flex-col font-sans antialiased selection:bg-natural-sage/20" id="app-root">
       {/* Header */}
-      <header className="bg-natural-sidebar dark:bg-dark-elevated border-b border-natural-border dark:border-dark-border py-4.5 px-6 sticky top-0 z-10 shadow-xs" id="app-header">
-        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-3">
+      <header className="bg-natural-sidebar/70 dark:bg-dark-elevated/70 backdrop-blur-md border-b border-natural-border/50 dark:border-dark-border/50 py-3 px-4 sm:py-4.5 sm:px-6 sticky top-0 z-10 shadow-sm" id="app-header">
+        <div className="max-w-7xl mx-auto flex items-center justify-between gap-3">
+          <div className="flex items-center gap-2.5 sm:gap-3 min-w-0">
             <img 
               src={logoEmpatictech} 
               alt="EmpaticTech Logo" 
-              className="w-16 h-16 object-contain rounded-xl"
+              className="w-10 h-10 sm:w-14 sm:h-14 object-contain rounded-xl shrink-0"
               referrerPolicy="no-referrer"
             />
-            <div>
-              <h1 className="text-xl font-serif italic font-bold text-natural-charcoal dark:text-dark-text tracking-tight">
+            <div className="min-w-0">
+              <h1 className="text-sm sm:text-xl font-serif italic font-bold text-natural-charcoal dark:text-dark-text tracking-tight truncate">
                 Desanuveador Tech Empático
               </h1>
-              <p className="text-[10px] text-natural-taupe dark:text-dark-muted mt-0.5 max-w-xs leading-relaxed hidden sm:block">
+              <p className="text-[9px] sm:text-[10px] text-natural-taupe dark:text-dark-muted mt-0.5 max-w-xs leading-relaxed hidden sm:block">
                 Um assistente conversacional empático que ajuda pessoas a escolherem o computador ideal, linguagem simplificada com metáforas do dia a dia.
               </p>
             </div>
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 sm:gap-3 shrink-0">
             <ThemeToggle dark={darkMode} onToggle={() => setDarkMode(!darkMode)} />
             <ExportActions messages={messages} />
-            <div className="hidden sm:flex items-center gap-2 bg-natural-sage/10 border border-natural-sage/20 py-1.5 px-3 rounded-xl text-xs text-natural-sage font-medium">
+            <div className="hidden lg:flex items-center gap-2 bg-natural-sage/10 border border-natural-sage/20 py-1.5 px-3 rounded-xl text-xs text-natural-sage font-medium">
               <Heart className="w-4 h-4 text-natural-sage animate-pulse motion-reduce:animate-none fill-natural-sage/20" />
               <span>Apoio empático</span>
             </div>
@@ -270,7 +270,7 @@ export default function App() {
       </main>
 
       {/* Aesthetic Footer */}
-      <footer className="bg-natural-sidebar dark:bg-dark-elevated border-t border-natural-border dark:border-dark-border py-6 text-center mt-12" id="app-footer">
+      <footer className="bg-natural-sidebar/70 dark:bg-dark-elevated/70 backdrop-blur-md border-t border-natural-border/50 dark:border-dark-border/50 py-6 text-center mt-12" id="app-footer">
         <div className="max-w-7xl mx-auto px-4 text-xs text-natural-taupe dark:text-dark-muted space-y-2">
           <p className="font-medium">
             🌿 recurso abundante feito com empatia e afeto 🌿

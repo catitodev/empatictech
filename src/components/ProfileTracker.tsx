@@ -23,7 +23,7 @@ export default function ProfileTracker({ profile, onChangeProfile, onGenerate }:
   const progressPct = Math.round((filledCount / 4) * 100);
 
   return (
-    <div className="bg-natural-sidebar/80 dark:bg-dark-surface/80 backdrop-blur-sm border border-natural-border dark:border-dark-border rounded-3xl p-6 shadow-xs" id="profile-tracker-container">
+    <div className="bg-natural-sidebar/60 dark:bg-dark-surface/60 backdrop-blur-md border border-natural-border/50 dark:border-dark-border/50 rounded-3xl p-6 shadow-sm" id="profile-tracker-container">
       <div className="flex justify-between items-start gap-4 mb-3">
         <div>
           <span className="text-[10px] font-bold tracking-wider text-natural-taupe dark:text-dark-muted uppercase">

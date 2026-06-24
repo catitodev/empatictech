@@ -205,7 +205,7 @@ export default function RecommendationCards({ chatText }: RecommendationCardsPro
   };
 
   return (
-    <div className="bg-white dark:bg-[#1e1e1e] border border-[#E5E1D5] dark:border-[#444] rounded-3xl p-6 shadow-xs space-y-5" id="recommendation-cards-container">
+    <div className="bg-white/60 dark:bg-dark-surface/60 backdrop-blur-md border border-natural-border/50 dark:border-dark-border/50 rounded-3xl p-6 shadow-sm space-y-5" id="recommendation-cards-container">
       <div>
         <span className="text-[10px] font-bold tracking-wider text-[#5A6E5F] bg-[#5A6E5F]/10 px-2.5 py-1 rounded-full uppercase">
           Painel de Preços e Modelos

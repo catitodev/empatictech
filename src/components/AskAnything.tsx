@@ -45,7 +45,7 @@ export default function AskAnything() {
   ];
 
   return (
-    <div className="bg-white dark:bg-[#1e1e1e] border border-[#E5E1D5] dark:border-[#444] rounded-3xl p-6 shadow-xs space-y-4" id="ask-anything-container">
+    <div className="bg-white/60 dark:bg-dark-surface/60 backdrop-blur-md border border-natural-border/50 dark:border-dark-border/50 rounded-3xl p-6 shadow-sm space-y-4" id="ask-anything-container">
       {/* Header */}
       <div className="flex items-center gap-2.5">
         <div className="p-2 bg-[#D4A373]/15 rounded-xl">

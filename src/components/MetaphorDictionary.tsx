@@ -55,7 +55,7 @@ export default function MetaphorDictionary() {
   };
 
   return (
-    <div className="bg-white/80 dark:bg-[#1e1e1e]/80 backdrop-blur-sm border border-[#E5E1D5] dark:border-[#444] rounded-3xl p-6 shadow-xs" id="metaphor-dictionary-container">
+    <div className="bg-white/60 dark:bg-dark-surface/60 backdrop-blur-md border border-natural-border/50 dark:border-dark-border/50 rounded-3xl p-6 shadow-sm" id="metaphor-dictionary-container">
       <div className="flex items-center gap-2.5 mb-4">
         <BookOpen className="w-5 h-5 text-[#5A6E5F]" />
         <h3 className="text-base font-serif italic font-bold text-natural-charcoal dark:text-dark-text">
