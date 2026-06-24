@@ -1,0 +1,9 @@
+{
+  "buildCommand": "vite build",
+  "outputDirectory": "dist",
+  "rewrites": [
+    { "source": "/api/chat", "destination": "/api/chat" },
+    { "source": "/api/ask", "destination": "/api/ask" },
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}
