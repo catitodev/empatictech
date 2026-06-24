@@ -3,9 +3,7 @@ import { Send, AlertCircle } from 'lucide-react';
 import { Message } from '../types';
 import { CopyMessageButton } from './ExportActions';
 // @ts-ignore
-import logoIcon from '../assets/images/desanuveadorempatictech_gif.gif';
-// @ts-ignore
-import welcomeGif from '../assets/images/desanuveadorempatictech_gif.gif';
+import logoIcon from '../assets/images/empatictech_icon.png';
 
 interface ChatWindowProps {
   messages: Message[];
@@ -45,7 +43,7 @@ export default function ChatWindow({ messages, onSendMessage, loading, error }: 
       {/* Chat Header */}
       <div className="bg-natural-sidebar dark:bg-dark-elevated border-b border-natural-border dark:border-dark-border p-4.5 flex items-center justify-between text-natural-charcoal dark:text-dark-text shadow-xs">
         <div className="flex items-center gap-3">
-          <img src={logoIcon} alt="Desanuveador Tech" className="w-10 h-10 rounded-full object-cover shadow-xs" />
+          <img src={logoIcon} alt="Desanuveador Tech" className="w-12 h-12 rounded-full object-contain shadow-xs" />
           <div>
             <h2 className="text-sm font-serif italic font-bold text-natural-charcoal dark:text-dark-text tracking-tight">Conversa com o Desanuveador Tech</h2>
             <div className="flex items-center gap-1.5 mt-0.5">
@@ -60,7 +58,7 @@ export default function ChatWindow({ messages, onSendMessage, loading, error }: 
       <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-natural-bg dark:bg-dark-base">
         {messages.length === 0 && (
           <div className="flex flex-col items-center justify-center h-full text-center p-6 space-y-4">
-            <img src={welcomeGif} alt="Bem-vindo" className="w-20 h-20 rounded-full object-cover shadow-md" />
+            <img src={logoIcon} alt="Bem-vindo" className="w-24 h-24 rounded-2xl object-contain shadow-md" />
             <div className="space-y-1.5 max-w-sm">
               <h3 className="text-sm font-serif italic font-bold text-natural-charcoal dark:text-dark-text">Seja muito bem-vindo(a)!</h3>
               <p className="text-xs text-natural-dark dark:text-dark-text leading-relaxed">
@@ -96,9 +94,9 @@ export default function ChatWindow({ messages, onSendMessage, loading, error }: 
               id={`message-bubble-${msg.id}`}
             >
               {isAssistant ? (
-                <img src={logoIcon} alt="Guia" className="w-8 h-8 rounded-full object-cover shadow-xs shrink-0" />
+                <img src={logoIcon} alt="Guia" className="w-10 h-10 rounded-full object-contain shadow-xs shrink-0" />
               ) : (
-                <div className="w-8 h-8 rounded-full shrink-0 flex items-center justify-center text-sm shadow-xs bg-natural-taupe text-white">
+                <div className="w-10 h-10 rounded-full shrink-0 flex items-center justify-center text-base shadow-xs bg-natural-taupe text-white">
                   👤
                 </div>
               )}
@@ -124,7 +122,7 @@ export default function ChatWindow({ messages, onSendMessage, loading, error }: 
 
         {loading && (
           <div className="flex gap-3 max-w-[85%] mr-auto" id="loading-indicator">
-            <img src={logoIcon} alt="Guia" className="w-8 h-8 rounded-full object-cover shadow-xs shrink-0" />
+            <img src={logoIcon} alt="Guia" className="w-10 h-10 rounded-full object-contain shadow-xs shrink-0" />
             <div className="bg-white dark:bg-dark-elevated border border-natural-border dark:border-dark-border p-3.5 rounded-2xl rounded-tl-none shadow-xs">
               <div className="flex gap-2 items-center justify-center h-4 py-1">
                 <span className="w-2 h-2 bg-natural-sage rounded-full animate-[typing-pulse_1.4s_ease-in-out_infinite]" style={{ animationDelay: '0ms' }} />
