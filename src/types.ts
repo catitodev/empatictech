@@ -7,10 +7,10 @@ export interface Message {
 }
 
 export interface UserProfile {
-  mobility: 'Notebook (Portátil)' | 'Computador de Mesa (Desktop)' | 'Ainda Não Definido';
-  effort: 'Básico (Textos, Vídeos, Estudos)' | 'Intermediário (Múltiplas Abas, Planilhas)' | 'Avançado (Jogos, Edição, Design)' | 'Ainda Não Definido';
-  budget: string; // ex: "Até R$ 2.500" ou "Não definido"
-  reuse: string;  // ex: "Tem mouse/teclado" ou "Nenhum"
+  mobility: string;
+  effort: string;
+  budget: string;
+  reuse: string;
 }
 
 export interface HardwareConcept {

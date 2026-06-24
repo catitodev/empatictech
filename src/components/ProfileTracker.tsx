@@ -1,12 +1,13 @@
-import { Monitor, Laptop, BrainCircuit, Wallet, Sparkles, RefreshCw } from 'lucide-react';
+import { Monitor, Laptop, BrainCircuit, Wallet, Sparkles, RefreshCw, Send } from 'lucide-react';
 import { UserProfile } from '../types';
 
 interface ProfileTrackerProps {
   profile: UserProfile;
   onChangeProfile: (updated: Partial<UserProfile>) => void;
+  onGenerate?: () => void;
 }
 
-export default function ProfileTracker({ profile, onChangeProfile }: ProfileTrackerProps) {
+export default function ProfileTracker({ profile, onChangeProfile, onGenerate }: ProfileTrackerProps) {
   // Check completion progress
   const mobilityDefined = profile.mobility !== 'Ainda Não Definido';
   const effortDefined = profile.effort !== 'Ainda Não Definido';
@@ -61,9 +62,19 @@ export default function ProfileTracker({ profile, onChangeProfile }: ProfileTrac
               
               <div className="mt-2.5 flex gap-1.5">
                 <button
-                  onClick={() => onChangeProfile({ mobility: 'Notebook (Portátil)' })}
+                  onClick={() => {
+                    if (profile.mobility === 'Notebook (Portátil)') {
+                      onChangeProfile({ mobility: 'Ainda Não Definido' });
+                    } else if (profile.mobility === 'Ainda Não Definido') {
+                      onChangeProfile({ mobility: 'Notebook (Portátil)' });
+                    } else if (profile.mobility.includes('Notebook')) {
+                      onChangeProfile({ mobility: 'Computador de Mesa (Desktop)' });
+                    } else {
+                      onChangeProfile({ mobility: profile.mobility + ', Notebook (Portátil)' });
+                    }
+                  }}
                   className={`px-3 py-1 text-[11px] rounded-lg border font-semibold transition-all cursor-pointer focus-visible:ring-2 focus-visible:ring-[#5A6E5F]/50 focus-visible:ring-offset-2 ${
-                    profile.mobility === 'Notebook (Portátil)'
+                    profile.mobility.includes('Notebook')
                       ? 'bg-[#5A6E5F] text-white border-transparent'
                       : 'bg-white text-natural-dark border-[#E5E1D5] hover:bg-slate-50'
                   }`}
@@ -72,9 +83,19 @@ export default function ProfileTracker({ profile, onChangeProfile }: ProfileTrac
                   Notebook
                 </button>
                 <button
-                  onClick={() => onChangeProfile({ mobility: 'Computador de Mesa (Desktop)' })}
+                  onClick={() => {
+                    if (profile.mobility === 'Computador de Mesa (Desktop)') {
+                      onChangeProfile({ mobility: 'Ainda Não Definido' });
+                    } else if (profile.mobility === 'Ainda Não Definido') {
+                      onChangeProfile({ mobility: 'Computador de Mesa (Desktop)' });
+                    } else if (profile.mobility.includes('Desktop')) {
+                      onChangeProfile({ mobility: 'Notebook (Portátil)' });
+                    } else {
+                      onChangeProfile({ mobility: profile.mobility + ', Computador de Mesa (Desktop)' });
+                    }
+                  }}
                   className={`px-3 py-1 text-[11px] rounded-lg border font-semibold transition-all cursor-pointer focus-visible:ring-2 focus-visible:ring-[#5A6E5F]/50 focus-visible:ring-offset-2 ${
-                    profile.mobility === 'Computador de Mesa (Desktop)'
+                    profile.mobility.includes('Desktop')
                       ? 'bg-[#5A6E5F] text-white border-transparent'
                       : 'bg-white text-natural-dark border-[#E5E1D5] hover:bg-slate-50'
                   }`}
@@ -108,7 +129,17 @@ export default function ProfileTracker({ profile, onChangeProfile }: ProfileTrac
 
               <div className="mt-2.5 flex flex-wrap gap-1">
                 <button
-                  onClick={() => onChangeProfile({ effort: 'Básico (Textos, Vídeos, Estudos)' })}
+                  onClick={() => {
+                    const current = profile.effort;
+                    if (current.includes('Básico')) {
+                      const cleaned = current.replace('Básico (Textos, Vídeos, Estudos)', '').replace(/^,\s*|,\s*$/g, '').replace(/,\s*,/g, ',').trim();
+                      onChangeProfile({ effort: cleaned || 'Ainda Não Definido' });
+                    } else if (current === 'Ainda Não Definido') {
+                      onChangeProfile({ effort: 'Básico (Textos, Vídeos, Estudos)' });
+                    } else {
+                      onChangeProfile({ effort: current + ', Básico (Textos, Vídeos, Estudos)' });
+                    }
+                  }}
                   className={`px-2.5 py-1 text-[10px] rounded-lg border font-semibold transition-all cursor-pointer focus-visible:ring-2 focus-visible:ring-[#D4A373]/50 focus-visible:ring-offset-2 ${
                     profile.effort.includes('Básico')
                       ? 'bg-[#D4A373] text-white border-transparent'
@@ -119,7 +150,17 @@ export default function ProfileTracker({ profile, onChangeProfile }: ProfileTrac
                   Estudos/Séries
                 </button>
                 <button
-                  onClick={() => onChangeProfile({ effort: 'Intermediário (Múltiplas Abas, Planilhas)' })}
+                  onClick={() => {
+                    const current = profile.effort;
+                    if (current.includes('Intermediário')) {
+                      const cleaned = current.replace('Intermediário (Múltiplas Abas, Planilhas)', '').replace(/^,\s*|,\s*$/g, '').replace(/,\s*,/g, ',').trim();
+                      onChangeProfile({ effort: cleaned || 'Ainda Não Definido' });
+                    } else if (current === 'Ainda Não Definido') {
+                      onChangeProfile({ effort: 'Intermediário (Múltiplas Abas, Planilhas)' });
+                    } else {
+                      onChangeProfile({ effort: current + ', Intermediário (Múltiplas Abas, Planilhas)' });
+                    }
+                  }}
                   className={`px-2.5 py-1 text-[10px] rounded-lg border font-semibold transition-all cursor-pointer focus-visible:ring-2 focus-visible:ring-[#D4A373]/50 focus-visible:ring-offset-2 ${
                     profile.effort.includes('Intermediário')
                       ? 'bg-[#D4A373] text-white border-transparent'
@@ -130,7 +171,17 @@ export default function ProfileTracker({ profile, onChangeProfile }: ProfileTrac
                   Trabalho pesado
                 </button>
                 <button
-                  onClick={() => onChangeProfile({ effort: 'Avançado (Jogos, Edição, Design)' })}
+                  onClick={() => {
+                    const current = profile.effort;
+                    if (current.includes('Avançado')) {
+                      const cleaned = current.replace('Avançado (Jogos, Edição, Design)', '').replace(/^,\s*|,\s*$/g, '').replace(/,\s*,/g, ',').trim();
+                      onChangeProfile({ effort: cleaned || 'Ainda Não Definido' });
+                    } else if (current === 'Ainda Não Definido') {
+                      onChangeProfile({ effort: 'Avançado (Jogos, Edição, Design)' });
+                    } else {
+                      onChangeProfile({ effort: current + ', Avançado (Jogos, Edição, Design)' });
+                    }
+                  }}
                   className={`px-2.5 py-1 text-[10px] rounded-lg border font-semibold transition-all cursor-pointer focus-visible:ring-2 focus-visible:ring-[#D4A373]/50 focus-visible:ring-offset-2 ${
                     profile.effort.includes('Avançado')
                       ? 'bg-[#D4A373] text-white border-transparent'
@@ -264,10 +315,6 @@ export default function ProfileTracker({ profile, onChangeProfile }: ProfileTrac
       </div>
 
       <div className="mt-5 pt-4 border-t border-natural-border dark:border-dark-border flex items-center justify-between text-[11px] text-natural-taupe">
-        <span className="flex items-center gap-1 font-semibold">
-          <Sparkles className="w-3.5 h-3.5 text-natural-sage animate-pulse motion-reduce:animate-none" />
-          Preenchimento automático ativo
-        </span>
         <button
           onClick={() => onChangeProfile({
             mobility: 'Ainda Não Definido',
@@ -275,11 +322,19 @@ export default function ProfileTracker({ profile, onChangeProfile }: ProfileTrac
             budget: 'Ainda Não Definido',
             reuse: 'Ainda Não Definido'
           })}
-          className="text-natural-sage hover:text-natural-charcoal font-bold flex items-center gap-1 cursor-pointer focus-visible:ring-2 focus-visible:ring-natural-sage/50 focus-visible:ring-offset-2 rounded"
+          className="text-natural-taupe hover:text-natural-charcoal font-bold flex items-center gap-1 cursor-pointer focus-visible:ring-2 focus-visible:ring-natural-sage/50 focus-visible:ring-offset-2 rounded"
           id="btn-reset-profile"
         >
           <RefreshCw className="w-3 h-3" />
           Reiniciar
+        </button>
+        <button
+          onClick={onGenerate}
+          className="bg-natural-sage hover:bg-natural-charcoal text-white font-bold flex items-center gap-1.5 px-4 py-1.5 rounded-xl cursor-pointer transition-colors focus-visible:ring-2 focus-visible:ring-natural-sage/50 focus-visible:ring-offset-2 text-xs"
+          id="btn-generate-profile"
+        >
+          <Send className="w-3.5 h-3.5" />
+          Gerar
         </button>
       </div>
     </div>

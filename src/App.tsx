@@ -231,6 +231,19 @@ export default function App() {
           <ProfileTracker
             profile={profile}
             onChangeProfile={handleManualProfileChange}
+            onGenerate={() => {
+              const parts: string[] = [];
+              if (profile.mobility !== 'Ainda Não Definido') parts.push(`Mobilidade: ${profile.mobility}`);
+              if (profile.effort !== 'Ainda Não Definido') parts.push(`Uso: ${profile.effort}`);
+              if (profile.budget !== 'Ainda Não Definido' && profile.budget.toLowerCase() !== 'não mencionado') parts.push(`Orçamento: ${profile.budget}`);
+              if (profile.reuse !== 'Ainda Não Definido' && profile.reuse.toLowerCase() !== 'não mencionado') parts.push(`Reaproveitamento: ${profile.reuse}`);
+
+              const profileSummary = parts.length > 0
+                ? `Com base no meu perfil: ${parts.join(', ')}. Me dê recomendações de computadores.`
+                : 'Me ajude a escolher um computador. Ainda não tenho certeza do que preciso.';
+
+              handleSendMessage(profileSummary);
+            }}
           />
 
           {/* Interactive Metaphor Dictionary */}
