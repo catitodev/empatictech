@@ -216,9 +216,14 @@ export default function App() {
               className="w-16 h-16 object-contain rounded-xl"
               referrerPolicy="no-referrer"
             />
-            <h1 className="text-xl font-serif italic font-bold text-natural-charcoal dark:text-[#e0ddd6] tracking-tight">
-              Desanuveador Tech Empático
-            </h1>
+            <div>
+              <h1 className="text-xl font-serif italic font-bold text-natural-charcoal dark:text-[#e0ddd6] tracking-tight">
+                Desanuveador Tech Empático
+              </h1>
+              <p className="text-[10px] text-natural-taupe dark:text-[#999] mt-0.5 max-w-xs leading-relaxed hidden sm:block">
+                Um assistente conversacional empático que ajuda pessoas a escolherem o computador ideal, linguagem simplificada com metáforas do dia a dia.
+              </p>
+            </div>
           </div>
 
           <div className="flex items-center gap-3">

@@ -22,14 +22,14 @@ export default function ProfileTracker({ profile, onChangeProfile }: ProfileTrac
   const progressPct = Math.round((filledCount / 4) * 100);
 
   return (
-    <div className="bg-[#F4F1EA] border border-[#E5E1D5] rounded-3xl p-6 shadow-xs" id="profile-tracker-container">
+    <div className="bg-[#F4F1EA]/80 dark:bg-[#1e1e1e]/80 backdrop-blur-sm border border-[#E5E1D5] dark:border-[#444] rounded-3xl p-6 shadow-xs" id="profile-tracker-container">
       <div className="flex justify-between items-start gap-4 mb-3">
         <div>
-          <span className="text-[10px] font-bold tracking-wider text-[#8D7B68] uppercase">
+          <span className="text-[10px] font-bold tracking-wider text-[#8D7B68] dark:text-[#999] uppercase">
             Ficha do Seu Perfil
           </span>
           <h3 className="text-base font-serif italic font-bold text-[#4A4842] mt-1">
-            O que já sabemos sobre você:
+            conta um pouquinho aqui..
           </h3>
         </div>
         <div className="text-right">
@@ -48,14 +48,14 @@ export default function ProfileTracker({ profile, onChangeProfile }: ProfileTrac
 
       <div className="space-y-4">
         {/* 1. MOBILIDADE */}
-        <div className="p-3.5 rounded-2xl bg-white/60 border border-[#E5E1D5] transition-colors">
+        <div className="p-3.5 rounded-2xl bg-white/60 dark:bg-[#252525]/70 backdrop-blur-xs border border-[#E5E1D5] dark:border-[#444] transition-colors">
           <div className="flex items-start gap-3">
             <div className={`p-2 rounded-lg mt-0.5 ${mobilityDefined ? 'bg-[#5A6E5F]/15 text-[#5A6E5F]' : 'bg-[#E5E1D5]/55 text-natural-taupe'}`}>
               {profile.mobility.includes('Desktop') ? <Monitor className="w-4 h-4" /> : <Laptop className="w-4 h-4" />}
             </div>
             <div className="flex-1">
               <div className="flex justify-between items-center">
-                <span className="text-xs font-bold text-[#4A4842]">Mobilidade (Onde vai usar?)</span>
+                <span className="text-xs font-bold text-[#4A4842] dark:text-[#e0ddd6]">Mobilidade (Onde vai usar?)</span>
                 {mobilityDefined && <span className="px-2 py-0.5 bg-[#5A6E5F] text-white rounded text-[9px] font-bold">DEFINIDO</span>}
               </div>
               
@@ -83,7 +83,7 @@ export default function ProfileTracker({ profile, onChangeProfile }: ProfileTrac
                   Desktop (Fixo)
                 </button>
               </div>
-              <p className="text-[10px] text-natural-taupe mt-1.5 leading-normal">
+              <p className="text-[10px] text-natural-taupe dark:text-[#999] mt-1.5 leading-normal">
                 {profile.mobility === 'Ainda Não Definido' 
                   ? 'Você precisa levar o PC para outros lugares ou usar apenas fixo na mesa?' 
                   : profile.mobility === 'Notebook (Portátil)' 
@@ -95,14 +95,14 @@ export default function ProfileTracker({ profile, onChangeProfile }: ProfileTrac
         </div>
 
         {/* 2. ESFORÇO / USO */}
-        <div className="p-3.5 rounded-2xl bg-white/60 border border-[#E5E1D5] transition-colors">
+        <div className="p-3.5 rounded-2xl bg-white/60 dark:bg-[#252525]/70 backdrop-blur-xs border border-[#E5E1D5] dark:border-[#444] transition-colors">
           <div className="flex items-start gap-3">
             <div className={`p-2 rounded-lg mt-0.5 ${effortDefined ? 'bg-[#D4A373]/15 text-[#D4A373]' : 'bg-[#E5E1D5]/55 text-natural-taupe'}`}>
               <BrainCircuit className="w-4 h-4" />
             </div>
             <div className="flex-1">
               <div className="flex justify-between items-center">
-                <span className="text-xs font-bold text-[#4A4842]">Uso Principal (Nível de Força)</span>
+                <span className="text-xs font-bold text-[#4A4842] dark:text-[#e0ddd6]">Uso Principal (Nível de Força)</span>
                 {effortDefined && <span className="px-2 py-0.5 bg-[#D4A373] text-white rounded text-[9px] font-bold">DEFINIDO</span>}
               </div>
 
@@ -141,7 +141,7 @@ export default function ProfileTracker({ profile, onChangeProfile }: ProfileTrac
                   Jogos/Design
                 </button>
               </div>
-              <p className="text-[10px] text-natural-taupe mt-1.5 leading-normal">
+              <p className="text-[10px] text-natural-taupe dark:text-[#999] mt-1.5 leading-normal">
                 {profile.effort === 'Ainda Não Definido'
                   ? 'Como vai ser o dia a dia dele? Tarefas leves ou programas pesados?'
                   : profile.effort.includes('Básico')
@@ -155,14 +155,14 @@ export default function ProfileTracker({ profile, onChangeProfile }: ProfileTrac
         </div>
 
         {/* 3. ORÇAMENTO */}
-        <div className="p-3.5 rounded-2xl bg-white/60 border border-[#E5E1D5] transition-colors">
+        <div className="p-3.5 rounded-2xl bg-white/60 dark:bg-[#252525]/70 backdrop-blur-xs border border-[#E5E1D5] dark:border-[#444] transition-colors">
           <div className="flex items-start gap-3">
             <div className={`p-2 rounded-lg mt-0.5 ${budgetDefined ? 'bg-[#5A6E5F]/15 text-[#5A6E5F]' : 'bg-[#E5E1D5]/55 text-natural-taupe'}`}>
               <Wallet className="w-4 h-4" />
             </div>
             <div className="flex-1">
               <div className="flex justify-between items-center">
-                <span className="text-xs font-bold text-[#4A4842]">Valor Confortável (Orçamento)</span>
+                <span className="text-xs font-bold text-[#4A4842] dark:text-[#e0ddd6]">Valor Confortável (Orçamento)</span>
                 {budgetDefined && <span className="px-2 py-0.5 bg-[#5A6E5F] text-white rounded text-[9px] font-bold">DEFINIDO</span>}
               </div>
               
@@ -177,7 +177,7 @@ export default function ProfileTracker({ profile, onChangeProfile }: ProfileTrac
                 />
                 <span className="text-[10px] text-natural-taupe">Estipule um limite</span>
               </div>
-              <p className="text-[10px] text-natural-taupe mt-1.5 leading-normal">
+              <p className="text-[10px] text-natural-taupe dark:text-[#999] mt-1.5 leading-normal">
                 {budgetDefined 
                   ? `Limite definido: ${profile.budget}. Vou achar as melhores opções até este preço!`
                   : 'Saber quanto você pode investir me ajuda a escolher peças que cabem no bolso.'}
@@ -187,14 +187,14 @@ export default function ProfileTracker({ profile, onChangeProfile }: ProfileTrac
         </div>
 
         {/* 4. REAPROVEITAMENTO */}
-        <div className="p-3.5 rounded-2xl bg-white/60 border border-[#E5E1D5] transition-colors">
+        <div className="p-3.5 rounded-2xl bg-white/60 dark:bg-[#252525]/70 backdrop-blur-xs border border-[#E5E1D5] dark:border-[#444] transition-colors">
           <div className="flex items-start gap-3">
             <div className={`p-2 rounded-lg mt-0.5 ${reuseDefined ? 'bg-[#5A6E5F]/15 text-[#5A6E5F]' : 'bg-[#E5E1D5]/55 text-natural-taupe'}`}>
               <Sparkles className="w-4 h-4" />
             </div>
             <div className="flex-1">
               <div className="flex justify-between items-center">
-                <span className="text-xs font-bold text-[#4A4842]">Reaproveitamento para Economizar</span>
+                <span className="text-xs font-bold text-[#4A4842] dark:text-[#e0ddd6]">Reaproveitamento para Economizar</span>
                 {reuseDefined && <span className="px-2 py-0.5 bg-[#5A6E5F] text-white rounded text-[9px] font-bold">DEFINIDO</span>}
               </div>
 
@@ -233,7 +233,7 @@ export default function ProfileTracker({ profile, onChangeProfile }: ProfileTrac
                   Tenho Monitor
                 </button>
               </div>
-              <p className="text-[10px] text-natural-taupe mt-1.5 leading-normal">
+              <p className="text-[10px] text-natural-taupe dark:text-[#999] mt-1.5 leading-normal">
                 {reuseDefined
                   ? `Marcado: ${profile.reuse}. Isso vai poupar dinheiro!`
                   : 'Diga se já tem monitor, mouse, teclado ou um computador antigo para reusar.'}
