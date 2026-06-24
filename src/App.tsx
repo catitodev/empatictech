@@ -280,6 +280,9 @@ export default function App() {
             <span>•</span>
             <span className="text-natural-sage font-bold font-serif italic">Sem complicações. Sem jargões.</span>
           </div>
+          <p className="text-[10px] text-natural-taupe/70 dark:text-dark-muted/70">
+            Desenvolvido por <a href="https://github.com/catitodev" target="_blank" rel="noopener noreferrer" className="text-natural-sage hover:underline font-semibold">catitodev</a> · Licença <a href="https://github.com/catitodev/empatictech/blob/main/LICENSE" target="_blank" rel="noopener noreferrer" className="text-natural-sage hover:underline font-semibold">Apache 2.0</a>
+          </p>
         </div>
       </footer>
     </div>
